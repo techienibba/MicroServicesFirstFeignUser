@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import io.github.resilience4j.retry.annotation.Retry;
 import userclientdiscovery.UserServiceClient.Service.BookService;
 import userclientdiscovery.UserServiceClient.User.User;
@@ -58,7 +59,8 @@ public class Usercontroller {
 	
 	
 	//@CircuitBreaker(name="bookbreaker",fallbackMethod="bookfallback")
-	@Retry(name="retryuser", fallbackMethod="bookfallback")
+	//@Retry(name="retryuser", fallbackMethod="bookfallback")
+	@RateLimiter(name="userratelimiter")
 	@GetMapping("/{userid}")
 	public User getuserbyid(@PathVariable("userid") int userid)
 	{ //User user1 = new User();
