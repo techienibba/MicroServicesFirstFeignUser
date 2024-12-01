@@ -40,12 +40,12 @@ public class Usercontroller {
 	
 	@GetMapping
 	public List<User> adduser()
-	{ 	//user1 = new User();
+	{ 	user1 = new User();
 	user1.setId(1);
 	user1.setName("Javed");
 	user1.setEmail("test@test.com");
 	
-	//user2 = new User();
+	user2 = new User();
 	user2.setId(2);
 	user2.setName("Akram");
 	user2.setEmail("test1@test.com");
@@ -63,13 +63,13 @@ public class Usercontroller {
 	@RateLimiter(name="userratelimiter")
 	@GetMapping("/{userid}")
 	public User getuserbyid(@PathVariable("userid") int userid)
-	{ //User user1 = new User();
-	
+	{ User user1 = new User();
+	//retryCount++;
 	user1.setId(1);
 	user1.setName("Javed");
 	user1.setEmail("test@test.com");
 	
-	//user2 = new User();
+	user2 = new User();
 	user2.setId(2);
 	user2.setName("Akram");
 	user2.setEmail("test1@test.com");
@@ -88,9 +88,9 @@ public class Usercontroller {
 		
 	}
 	
-	public User bookfallback(int userId, Exception ex)
+ /*	public User bookfallback(int userId, Exception ex)
 	{
-		retryCount++;
+	
 		log.info("This a fallback method for down service {}" + ex.getMessage());
 		Ratings rating1 = Ratings.builder().ratingid(1).rating(1).feedback("Yes").bookid(1).build();
 	
@@ -99,11 +99,11 @@ public class Usercontroller {
 		Book book = Book.builder().bookid(1).bookname("test Book").userid(12).ratings(fullratinglist).build();
 		List<Book> booklist =new ArrayList<>();
 			booklist.add(book);
-		User user = User.builder().id(12).name("Mock User").email("mock@test.com").books(booklist).build();
-		return user;
+		//User user = User.builder().id(12).name("Mock User").email("mock@test.com").books(booklist).build();
+		//return user;
 		
 		
-	}
+	} */
 	
 	@PostMapping("/{userid}/books/{bookid}/ratings")
 	public User addratingtouserbook(@PathVariable("userid") int userid,@PathVariable("bookid") int bookid, @RequestBody Ratings ratings)

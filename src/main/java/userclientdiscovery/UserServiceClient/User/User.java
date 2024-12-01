@@ -12,7 +12,7 @@ import userclientdiscovery.UserServiceClient.extras.Book;
 
 @Getter
 @Setter
-@Builder
+@NoArgsConstructor
 public class User {
 	
 	private int id;
